@@ -1,37 +1,113 @@
-## Welcome to GitHub Pages
+# markdown语法
 
-You can use the [editor on GitHub](https://github.com/SUNNYD11/front-end-knowledge-v0.1/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+- 标题
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+`# 一级标题`
 
-### Markdown
+# 一级标题
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+`## 二级标题`
 
-```markdown
-Syntax highlighted code block
+## 二级标题
 
-# Header 1
-## Header 2
-### Header 3
+`###### 六级标题`
 
-- Bulleted
-- List
+###### 六级标题
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
+- 引用
+
+`> 引用内容`
+
+> 引用内容
+
+点击两次回车取消
+
+
+
+- 粗体斜体
+
+`**粗体**`
+
+**粗体**
+
+`*斜体*`
+
+*斜体*
+
+
+
+- 删除线
+
+`~~删除~~`
+
+~~下划线~~
+
+
+
+- 链接
+
+`文字链接 [链接名字]（http://链接网址）`
+
+[google](https://www.google.com)
+
+`网址链接 <http://链接网址>`
+
+<https://www.google.com
+
+
+
+- 列表
+
+有序列表：
+
+1.aaa
+
+2.bbb
+
+无序列表：
+
+`-/*/+ 内容`
+
+- a
+  - b
+    - c
+
+
+
+- 分割线
+
+`三个以上的*/-创建`
+
+------
+
+
+
+- 代码区块
+
+`缩进四个空格或一个制表符，写在``中间，```换行写代码块`
+
+`console.log('hello world')`
+
+```
+let a=0;
+a = a+1;
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/SUNNYD11/front-end-knowledge-v0.1/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+- 表格
 
-### Support or Contact
+```
+| 第一表头        | 第二表头       |
+| ------------- |:-------------:|
+| a      | b      |
+| c      | d      |
+```
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+| 第一表头 | 第二表头 |
+| -------- | :------: |
+| a        |    b     |
+| c        |    d     |
+
