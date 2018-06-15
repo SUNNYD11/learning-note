@@ -228,8 +228,7 @@
 - css方面
   1. 将样式表放到页面顶部
   2. 不使用CSS表达式
-  3. 使用不使用[*@*import](https://lark.alipay.com/import)
-  4. 不使用IE的Filter
+  3. 不使用IE的Filter
 - Javascript方面
   1. 将脚本放到页面底部
   2. 将javascript和css从外部引入
