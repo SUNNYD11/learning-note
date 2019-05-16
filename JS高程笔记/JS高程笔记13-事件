@@ -1,0 +1,102 @@
+- 事件流：事件流描述的是从页面中接收事件的顺序。但有意思的是，IE 和 Netscape 开发团队居然提出了差不多是完全相反的事件流的概念。IE 的事件流是事件冒泡流，而 Netscape Communicator 的事件流是事件捕获流。
+
+- 事件冒泡：即事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播到较为不具体的节点（文档）。
+
+- 事件补货：事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。事件捕获的用意在于在事件到达预定目标之前捕获它。
+
+- 事件处理程序：
+
+  - html事件处理程序
+
+    ```
+    <input type="button" value="Click Me" onclick="alert('Clicked')" /> 
+    ```
+
+  - DOM0级事件处理程序：定事件处理程序的传统方式，就是将一个函数赋值给一个事件处理程序属性。
+
+    ```
+    var btn = document.getElementById("myBtn");
+    btn.onclick = function(){
+     alert("Clicked");
+    }; 
+    btn.onclick = null; //删除事件处理程序
+    ```
+
+  - DOM2级事件处理程序：”定义了两个方法，用于处理指定和删除事件处理程序的操作：addEventListener()和 removeEventListener()。所有 DOM 节点中都包含这两个方法，并且它们都接受 3 个参数：要处理的事件名、作为事件处理程序的函数和一个布尔值。最后这个布尔值参数如果是 true，表示在捕获阶段调用事件处理程序；如果是 false，表示在冒泡阶段调用事件处理程序。
+
+    ```
+    var btn = document.getElementById("myBtn");
+    btn.addEventListener("click", function(){
+     alert(this.id);
+    }, false); 
+    ```
+
+  - IE事件处理程序：IE 实现了与 DOM 中类似的两个方法：attachEvent()和 detachEvent()。这两个方法接受相同
+    的两个参数：事件处理程序名称与事件处理程序函数。由于 IE8 及更早版本只支持事件冒泡，所以通过attachEvent()添加的事件处理程序都会被添加到冒泡阶段。
+
+  - attachEvent()冒泡处理
+
+    ```
+    var btn = document.getElementById("myBtn");
+    btn.attachEvent("onclick", function(){
+     alert("Clicked");
+    });
+    btn.attachEvent("onclick", function(){
+     alert("Hello world!");
+    }); 
+    先看到hellow world，在看到clicked
+    ```
+
+- 事件对象：在触发 DOM 上的某个事件时，会产生一个事件对象 event，这个对象中包含着所有与事件有关的信息。包括导致事件的元素、事件的类型以及其他与特定事件相关的信息。
+
+- load事件，当页面完全加载后（包括所有图像、JavaScript 文件、CSS 文件等外部资源），就会触发 window 上面的 load 事件。
+
+  ```
+  EventUtil.addHandler(window, "load", function(event){
+   alert("Loaded!");
+  }); 
+  
+  <body onload="alert('Loaded!')"> 
+  ```
+
+- 焦点事件：当焦点从页面中的一个元素移动到另一个元素，会依次触发下列事件
+
+  (1) focusout 在失去焦点的元素上触发；
+  (2) focusin 在获得焦点的元素上触发；
+  (3) blur 在失去焦点的元素上触发；
+  (4) DOMFocusOut 在失去焦点的元素上触发；
+  (5) focus 在获得焦点的元素上触发；
+  (6) DOMFocusIn 在获得焦点的元素上触发。
+
+- 事件委托：
+
+  1. 事件委托利用了事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。例如，click 事件会一直冒泡到 document 层次。也就是说，我们可以为整个页面指定一个 onclick 事件处理程序，而不必给每个可单击的元素分别添加事件处理程序。
+  2. 对所有可单击的元素都采用这种方式，那么结果就会有数不
+     清的代码用于添加事件处理程序。此时，可以利用事件委技术解决这个问题。使用事件委托，只需在DOM 树中尽量最高的层次上添加一个事件处理程序。
+  3. 如果子元素都需要添加某个事件，就将事件挂在父元素上，这样所有子元素被触发时都会冒泡触发挂在父元素上的事件。
+
+  ```
+  var list = document.getElementById("myLinks");
+  EventUtil.addHandler(list, "click", function(event){
+   event = EventUtil.getEvent(event);
+   var target = EventUtil.getTarget(event);
+   switch(target.id){
+   case "doSomething":
+   document.title = "I changed the document's title";
+   break;
+   case "goSomewhere":
+   location.href = "http://www.wrox.com";
+   break;
+   case "sayHi":
+   alert("hi");
+   break;
+   }
+  }); 
+  我们使用事件委托只为<ul>元素添加了一个 onclick 事件处理程序。由于所有列
+  表项都是这个元素的子节点，而且它们的事件会冒泡，所以单击事件最终会被这个函数处理。我们知道，
+  事件目标是被单击的列表项，故而可以通过检测 id 属性来决定采取适当的操作。与前面未使用事件委
+  托的代码比一比，会发现这段代码的事前消耗更低，因为只取得了一个 DOM 元素，只添加了一个事件
+  处理程序。虽然对用户来说最终的结果相同，但这种技术需要占用的内存更少。
+  ```
+
+- 
