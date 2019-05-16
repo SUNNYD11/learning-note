@@ -1,0 +1,86 @@
+- BOM提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关。
+
+- BOM的核心对象是window，它表示浏览器的一个实例。 既是通过js访问浏览器窗口的一个借口，也是ECMAScript规定的global对象。
+
+- 在全局作用域中声明的变量、函数都会变成window对象的属性和方法。
+
+- innerWidth和innerHeight表示该容器中页面视图区的大小
+
+- window.open()方法既可以导航到一个特定的url，也可以打开一个新的浏览器窗口。这个方法可以接收 4 个参数：要加载的 URL、窗口目标、一个特性字符串以及一个表示新页面是否取代浏览器历史记录中当前加载页面的布尔值。
+
+- 超时调用，setTimeout()方法，它接受两个参数：要执行的代码和以毫秒表示的时间（即在执行代码前需要等待多少毫秒）。传递字符串可能导致性能损失，推荐函数调用方式
+
+  ```
+  setTimeout(function() {
+   alert("Hello world!");
+  }, 1000); 
+  ```
+
+- 间歇调用，按指定的时间间隔重复执行代码，知道被取消。
+
+  setinterval()。
+
+  ```
+  setInterval (function() {
+   alert("Hello world!");
+  }, 10000); 
+  ```
+
+  最好用超时调用代替间歇调用。
+
+  ```
+  var num = 0;
+  var max = 10;
+  function incrementNumber() {
+   num++;
+   //如果执行次数未达到 max 设定的值，则设置另一次超时调用
+   if (num < max) {
+   setTimeout(incrementNumber, 500);
+   } else {
+   alert("Done");
+   }
+  }
+  setTimeout(incrementNumber, 500); 
+  ```
+
+- location对象，它提供了与当前窗口中加载的文档有关的信息，还提供了一些导航功能。
+
+  跳转
+
+  ```
+  location.assign('');
+  window.location='';
+  location.href='';
+  ```
+
+- history对象，保存着用户上网的记录。使用go()方法可以在用户的历史记录中任意跳转
+
+  ```
+  //后退一页
+  history.go(-1);
+  //前进一页
+  history.go(1);
+  //前进两页
+  history.go(2); 
+  
+  //跳转到最近的 wrox.com 页面
+  history.go("wrox.com");
+  //跳转到最近的 nczonline.net 页面
+  history.go("nczonline.net"); 
+  
+  //后退一页
+  history.back();
+  //前进一页
+  history.forward(); 
+  ```
+
+  history 对象还有一个 length 属性，保存着历史记录的数量。这个数量包括所有历史记录，即所有向后和向前的记录。对于加载到窗口、标签页或框架中的第一个页面而言，
+  history.length 等于 0。通过像下面这样测试该属性的值，可以确定用户是否一开始就打开了你的页面。
+
+  ```
+  if (history.length == 0){
+   //这应该是用户打开窗口后的第一个页面
+  } 
+  ```
+
+  
