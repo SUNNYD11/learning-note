@@ -1,0 +1,51 @@
+- document 对象是 HTMLDocument（继承自 Document 类型）的一个实例，表示整个 HTML 页面。而且，document 对象是 window 对象的一个属性，因此可以将其作为全局对象来访问。
+
+- 是 documentElement属性，该属性始终指向 HTML 页面中的元素
+
+- 文档信息
+
+  URL 与 domain 属性是相互关联的。例如，如果 document.URL 等于 http://www.wrox.com/WileyCDA/，
+  那么 document.domain 就等于 www.wrox.com。
+
+  ```
+  //设置文档标题
+  document.title = "New page title"; 
+  //取得完整的 URL
+  var url = document.URL;
+  //取得域名
+  var domain = document.domain;
+  //取得来源页面的 URL
+  var referrer = document.referrer; 
+  ```
+
+- getElementById()和 getElementsByTagName()。
+
+  - getElementById()，接收一个参数：要取得的元素的 ID。如果找到相应的元素则返回该元素，如果不存在带有相应 ID 的元素，则返回 null。
+  - getElementsByTagName()。这个方法接受一个参数，即要取得元素的标签名，而返回的是包含零或多个元素的 NodeList。
+
+- 每个元素都有一或多个特性，这些特性的用途是给出相应元素或其内容的附加信息。操作特性的DOM 方法主要有三个，分别是 getAttribute()、setAttribute()和 removeAttribute()。
+
+  ```
+  var div = document.getElementById("myDiv");
+  alert(div.getAttribute("id")); //"myDiv" 
+  div.setAttribute("id", "someOtherId"); 
+  div.removeAttribute("class"); 
+  ```
+
+- Element 类型是使用 attributes 属性的唯一一个 DOM 节点类型。attributes 属性中包含一个NamedNodeMap，与 NodeList 类似，也是一个“动态”的集合。
+
+  attributes 的方法不够方便，因此开发人员更多的会使用
+  getAttribute()、removeAttribute()和 setAttribute()方法。
+
+  ```
+  var id = element.attributes["id"].nodeValue; 
+  element.attributes["id"].nodeValue = "someOtherId"; 
+  
+  ```
+
+- 使用 document.createElement()方法可以创建新元素。这个方法只接受一个参数，即要创建元
+  素的标签名。
+
+- 理解 DOM 的关键，就是理解 DOM 对性能的影响。DOM 操作往往是 JavaScript 程序中开销最大的
+  部分，而因访问 NodeList 导致的问题为最多。NodeList 对象都是“动态的”，这就意味着每次访问
+  NodeList 对象，都会运行一次查询。有鉴于此，最好的办法就是尽量减少 DOM 操作
