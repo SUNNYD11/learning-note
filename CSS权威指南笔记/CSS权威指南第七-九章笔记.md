@@ -1,0 +1,7 @@
+- 总宽度=左右内外边框宽度+width，如果只设置其中两项，另一项会自动适应，如果三个都设置了具体宽度且小于总宽度，右边属性会被auto覆盖。如果设置了width和两个auto，两边会设置为相等的长度。如果三个都auto，会外边距为0，width撑满。
+- 总宽度=(margin-left)+(border-left)+(padding-left)+width+(padding-right)+(border-left)+(margin-right)
+- 垂直七大属性必须等于包含块的height。垂直外边距会合并，当一个列表有10px上外边距，15px下外边距，则相邻列表项之间的距离是15px。
+- 行内非替换元素不能应用width和height。
+- background-repeat：设置是否重复，重复方向
+- background-positon：背景定位
+- 可以在background属性里汇总。
