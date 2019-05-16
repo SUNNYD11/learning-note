@@ -1,0 +1,56 @@
+- 语法：
+
+  - 简单值：使用与 JavaScript 相同的语法，可以在 JSON 中表示字符串、数值、布尔值和 null。但 JSON 不支持 JavaScript 中的特殊值 undefined。
+
+    ```
+    "Hello world!" 
+    ```
+
+    
+
+  - 对象：对象作为一种复杂数据类型，表示的是一组无序的键值对儿。而每个键值对儿中的值可以是简单值，也可以是复杂数据类型的值。
+
+    ```
+    var person = {
+     name: "Nicholas",
+     age: 29
+    }; 
+    ```
+
+    
+
+  - 数组：数组也是一种复杂数据类型，表示一组有序的值的列表，可以通过数值索引来访问其中的值。数组的值也可以是任意类型——简单值、对象或数组。
+
+    ```
+    JSON 数组也没有变量和分号。把数组和对象结合起来，可以构成更复杂的数据集合
+    {
+     "title": "Professional JavaScript",
+     "authors": [
+     "Nicholas C. Zakas"
+     ],
+     edition: 3,
+     year: 2011
+     }
+    ```
+
+  - JSON 对象有两个方法：stringify()和 parse()。JSON.stringify()把一个 JavaScript 对象序列化为一个 JSON 字符串。将 JSON 字符串直接传递给 JSON.parse()就可以得到相应的 JavaScript 值。
+
+  - 可以给对象定义 toJSON()方法，返回其自身的 JSON 数据格式。
+
+    ```
+    var book = {
+     "title": "Professional JavaScript",
+     "authors": [
+     "Nicholas C. Zakas"
+     ],
+     edition: 3,
+     year: 2011,
+     toJSON: function(){ 
+      return this.title;
+     }
+     };
+    var jsonText = JSON.stringify(book); //"Professional JavaScript"
+    ```
+
+    
+
