@@ -1,0 +1,41 @@
+- querySelector()方法接收一个 CSS 选择符，返回与该模式匹配的第一个元素，如果没有找到匹配的元素，返回 null。请看下面的例子。
+
+  ```
+  //取得 body 元素
+  var body = document.querySelector("body");
+  //取得 ID 为"myDiv"的元素
+  var myDiv = document.querySelector("#myDiv");
+  //取得类为"selected"的第一个元素
+  var selected = document.querySelector(".selected");
+  //取得类为"button"的第一个图像元素
+  var img = document.body.querySelector("img.button"); 
+  ```
+
+- querySelectorAll()方法接收的参数与 querySelector()方法一样，都是一个 CSS 选择符，但返回的是所有匹配的元素而不仅仅是一个元素。这个方法返回的是一个 NodeList 的实例。
+
+  ```
+  //取得某<div>中的所有<em>元素（类似于 getElementsByTagName("em")）
+  var ems = document.getElementById("myDiv").querySelectorAll("em");
+  //取得类为"selected"的所有元素
+  var selecteds = document.querySelectorAll(".selected");
+  //取得所有<p>元素中的所有<strong>元素
+  var strongs = document.querySelectorAll("p strong"); 
+  ```
+
+- 更换classname
+
+  ```
+  function deleteClassName(deleteName, deleteId) {
+    let className = document.getElementById(deleteId).className.split(/\s+/);
+    let i;
+    for (i = 0;i < className.length;i++) {
+      if(className[i] === deleteName) {
+        break;
+      }
+    }
+    className.splice(i,1);
+    document.getElementById('b').className = className.join(" ")
+  }
+  ```
+
+- 
